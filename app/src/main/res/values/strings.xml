@@ -4,5 +4,11 @@
     <string name="app_name">Bluetooth Messenger</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="toast_no_bluetooth">This device does not support Bluetooth communication</string>
+    <string name="toast_bluetooth_activated">Bluetooth activated. Thank you.</string>
+    <string name="toast_bluetooth_not_activated">Blue shall not pass.</string>
+    <string name="msg_enabling_bluetooth">Enabling bluetooth...</string>
+    <string name="msg_bluetooth_activated">Bluetooth activated</string>
+    <string name="msg_no_bluetooth">No Bluetooth on device</string>
+    <string name="msg_bluetooth_not_activated">Bluetooth not activated</string>
 </resources>
