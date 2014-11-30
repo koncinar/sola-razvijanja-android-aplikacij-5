@@ -2,12 +2,17 @@ package com.comtrade.bluetoothmessenger.app;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Set;
 
 
 public class MainActivity extends Activity {
@@ -37,6 +42,23 @@ public class MainActivity extends Activity {
             messageView.setText(R.string.msg_enabling_bluetooth);
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BLUETOOTH);
+            return;
+        } else {
+            messageView.setText(R.string.msg_bluetooth_activated);
+        }
+
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.bluetooth_devices_list_element);
+        ListView devicesList = (ListView) findViewById(R.id.list_devices);
+        devicesList.setAdapter(arrayAdapter);
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        // If there are paired devices
+        if (pairedDevices != null && pairedDevices.size() > 0) {
+            // Loop through paired devices
+            for (BluetoothDevice device : pairedDevices) {
+                // Add the name and address to an array adapter to show in a ListView
+                arrayAdapter.add(device.getName() + "\n" + device.getAddress());
+            }
         }
     }
 
